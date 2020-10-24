@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "AngS"
+    }
+  },
+  "defaultProject": "AngS",
+  "cli": {
+    "analytics": false
+  }
 }
