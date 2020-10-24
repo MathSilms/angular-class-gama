@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +7,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'AngS';
-  variavel = 35+4
+  variavel = 35+4;
+  classe = true
+  private _customClass = false
+
+
+  get customClass(){
+    return this._customClass
+  }
+  clickButton(){
+    this._customClass = !this._customClass
+  }
+
 }
+
+
