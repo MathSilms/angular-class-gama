@@ -1,22 +1,73 @@
 import { Component, Input } from '@angular/core';
 
+interface Personas{
+  classe:string;
+  descricao:string;
+  favoritado?:string
+
+}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'AngS';
-  variavel = 35+4;
-  classe = true
-  private _customClass = false
+  vari = '';
+  private _personas:Array<Personas> = [
+    {
+        "classe":  "Bárbaro",
+        "descricao": "A fierce warrior of primitive background who can enter a battle rage"
+    },
+    {
+        "classe":  "Bardo",
+        "descricao": "An inspiring magician whose power echoes the music of creation"
+    },
+    {
+        "classe":  "Paladino",
+        "descricao": "A holy warrior bound to a sacred oath"
+    },
+    {
+        "classe":  "Mago",
+        "descricao": "A scholarly magic-user capable of manipulating the structures of reality"
+    },
+    {
+        "classe":  "Druída",
+        "descricao": "A priest of the Old Faith, wielding the powers of nature and adopting animal forms"
+    }
+    ]
+  private _favoritado = this.personas.map(e => false)
 
 
-  get customClass(){
-    return this._customClass
+  get personas() {
+    return this._personas;
   }
-  clickButton(){
-    this._customClass = !this._customClass
+
+  get favoritado() {
+    return this._favoritado;
+  }
+
+
+  click2(value ) {
+    this.vari = value
+  }
+
+  click3(i){
+    console.log(i)
+    this._favoritado[i] = !this._favoritado[i]
+  }
+
+  enviar(i1,i2){
+    console.log(i1,i2)
+    this._personas.push({
+      classe:i1,
+      descricao:i2
+    })
+
+
+  }
+
+  remove(i){
+    this._personas.splice(i,1)
   }
 
 }
