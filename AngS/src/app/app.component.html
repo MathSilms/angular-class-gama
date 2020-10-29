@@ -1,33 +1,103 @@
 <eve-header>
   <div content>
     <ul class="demo-list-two mdl-list">
-      <form >
-        <input type="text" name="search" #input1  placeholder="pesquise aqui..." >
-        <input type="text" name="search2" #input2 placeholder="pesquise aqui..." >
+      <form>
+        <input type="text" name="search" #input1 placeholder="pesquise aqui...">
+        <input type="text" name="search2" #input2 placeholder="pesquise aqui...">
         <div (click)="enviar(input1.value,input2.value)">Enviar</div>
       </form>
       <li class="mdl-list__item mdl-list__item--two-line" *ngFor="let persona of personas; let i = index">
 
-            <span class="mdl-list__item-primary-content">
-                <i class="material-icons mdl-list__item-avatar">person</i>
-                <span>{{persona.classe}}</span>
-                <span class="mdl-list__item-sub-title">{{persona.descricao}}</span>
-            </span>
-            <span class="mdl-list__item-secondary-content">
-                <span class="mdl-list__item-secondary-info" [ngClass]="{favoritado: favoritado[i]}">Favoritado</span>
-                <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons" (click)="click3(i)">star</i></a>
-            </span>
-            <span class="mdl-list__item-secondary-content">
-              <a class="mdl-list__item-secondary-action red" (click)="remove(i)" href="#">
-                  <i class="material-icons">close</i>
-              </a>
-          </span>
-        </li>
+        <span class="mdl-list__item-primary-content">
+          <i class="material-icons mdl-list__item-avatar">person</i>
+          <span>{{persona.classe}}</span>
+          <span class="mdl-list__item-sub-title">{{persona.descricao}}</span>
+        </span>
+        <span class="mdl-list__item-secondary-content">
+          <span class="mdl-list__item-secondary-info" [ngClass]="{favoritado: favoritado[i]}">Favoritado</span>
+          <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons" (click)="click3(i)">star</i></a>
+        </span>
+        <span class="mdl-list__item-secondary-content">
+          <a class="mdl-list__item-secondary-action red" (click)="remove(i)" href="#">
+            <i class="material-icons">close</i>
+          </a>
+        </span>
+      </li>
+
     </ul>
-</div>
+  </div>
 </eve-header>
 
+<div id="mycard">
+
+  <div class="demo-card-wide mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title">
+      <h2 class="mdl-card__title-text">Contact details</h2>
+    </div>
+
+
+    <div class="mdl-card__supporting-text">
+      <form #formCadastro="ngForm" (submit)="salvar(formCadastro)">
+
+
+        <div id="name">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input #classe="ngModel" [(ngModel)]="cadastro.classe" name="classe" class="mdl-textfield__input" type="text" id="classe"
+              required>
+            <label  class="mdl-textfield__label" for="sample3">classe</label>
+            <span *ngIf="classe.invalid && classe.touched" class="mdl-textfield__error">Mobile must be a classe!</span>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input #nome="ngModel" [(ngModel)]="cadastro.nome" name="nome" class="mdl-textfield__input" type="text" id="nome" required>
+            <label  class="mdl-textfield__label" for="sample3">nome</label>
+            <span *ngIf="nome.invalid && nome.touched" class="mdl-textfield__error">Mobile must be a nome!</span>
+          </div>
+        </div>
+
+        <div id="contact">
+          <div id="telefone">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input #telefone="ngModel" [(ngModel)]="cadastro.telefone" name="telefone" class="mdl-textfield__input" type="text"
+                pattern="-?[0-9]*(\.[0-9]+)?" id="mobile" required>
+              <label  class="mdl-textfield__label" for="sample2">Mobile Phone</label>
+              <span *ngIf="telefone.invalid && telefone.touched" class="mdl-textfield__error">Mobile must be a number!</span>
+            </div>
+          </div>
+
+          <div id="nivel">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input #nivel="ngModel" [(ngModel)]="cadastro.nivel" name="nivel" class="mdl-textfield__input" type="text" required>
+              <label  class="mdl-textfield__label" for="sample2">nivel</label>
+              <span *ngIf="nivel.invalid && nivel.touched" class="mdl-textfield__error">Enter a valid email!</span>
+            </div>
+          </div>
+
+          <div id="raca">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input #raca="ngModel" [(ngModel)]="cadastro.raca" name="raca" class="mdl-textfield__input" type="text" required>
+              <label  class="mdl-textfield__label" for="sample2">raca</label>
+              <span *ngIf="raca.invalid && raca.touched" class="mdl-textfield__error">Enter a valid email!</span>
+            </div>
+          </div>
+
+          <div id="next">
+            <button (click)="reload($event)" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect"
+
+>
+
+              <i class="material-icons">arrow_forward</i>
+            </button>
+          </div>
+
+        </div>
+      </form>
+    </div>
 
 
 
 
+  </div>
+
+  <!-- FAB button with ripple -->
+
+</div>

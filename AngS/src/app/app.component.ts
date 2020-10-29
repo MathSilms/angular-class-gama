@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 interface Personas{
   classe:string;
@@ -13,6 +14,15 @@ interface Personas{
 })
 export class AppComponent {
   vari = '';
+  cadastro = {
+    nome: '',
+    classe: '',
+    telefone: '',
+    nivel: '',
+    raca: '',
+  }
+
+
   private _personas:Array<Personas> = [
     {
         "classe":  "Bárbaro",
@@ -68,6 +78,20 @@ export class AppComponent {
 
   remove(i){
     this._personas.splice(i,1)
+  }
+
+  reload(e){
+    //window.location.reload()
+    console.log(e)
+  }
+
+  salvar(form:NgForm){
+    if(form.valid){
+      localStorage.setItem('form',JSON.stringify(this.cadastro))
+      console.log(JSON.stringify(this.cadastro))
+    } else{
+      form.control.markAllAsTouched()
+    }
   }
 
 }
