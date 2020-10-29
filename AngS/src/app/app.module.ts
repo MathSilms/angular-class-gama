@@ -9,6 +9,22 @@ import { AtaqueComponent } from './pages/ataque/ataque.component';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { SharedModule } from './shared/shared.module';
 import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+
+const appRoutes:Routes = [
+  {
+    path:'',
+    component:HomeComponent
+  },
+  {
+    path:'cadastro',
+    component:CadastroComponent
+  },
+  {
+    path:'ataques',
+    component:AtaqueComponent
+  }
+];
 
 @NgModule({
   declarations: [
@@ -24,6 +40,7 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     SharedModule,
     FormsModule,
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [],
   bootstrap: [AppComponent]
