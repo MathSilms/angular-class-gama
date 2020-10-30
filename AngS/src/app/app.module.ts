@@ -1,28 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FieldDirective } from './field.directive';
-import { HomeComponent } from './pages/home/home.component';
-import { AtaqueComponent } from './pages/ataque/ataque.component';
-import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { SharedModule } from './shared/shared.module';
-import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+
 
 const appRoutes:Routes = [
   {
     path:'',
-    component:HomeComponent
+    loadChildren:() => import('./pages/home/home.module').then( m =>m.HomeModule)
   },
   {
     path:'cadastro',
-    component:CadastroComponent
+    loadChildren:() => import('./pages/cadastro/cadastro.module').then( m =>m.CadastroModule)
   },
   {
     path:'ataques',
-    component:AtaqueComponent
+    loadChildren:() => import('./pages/ataque/ataque.module').then( m =>m.AtaqueModule)
+  },
+  {
+    path: '**',
+    redirectTo:''
   }
 ];
 
@@ -30,16 +29,10 @@ const appRoutes:Routes = [
   declarations: [
     AppComponent,
     FieldDirective,
-    HomeComponent,
-    AtaqueComponent,
-    CadastroComponent,
-
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     SharedModule,
-    FormsModule,
     RouterModule.forRoot(appRoutes),
   ],
   providers: [],
